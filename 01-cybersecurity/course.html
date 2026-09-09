@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Phishing Defense Course</title><link rel="stylesheet" href="../assets/style.css"></head><body>
+<header><nav><strong>Phishing Defense</strong><a href="index.html">Case Study</a></nav></header><main class="wrap course">
+<div class="eyebrow">Interactive learning prototype</div><h1>Can you spot the trap?</h1><p class="lead">Work through three realistic decisions. Your goal is to protect credentials without slowing down legitimate work.</p>
+<div class="progress"><span id="bar"></span></div><div id="screen" class="card"></div></main>
+<script>
+const screens=[
+{t:"Four clues worth checking",c:`<p>Phishing often uses a combination of <b>urgency</b>, an <b>unexpected request</b>, a <b>sender or link mismatch</b>, and a request for <b>credentials, money, or sensitive information</b>.</p><p>Your safest habit is: <b>STOP → CHECK → VERIFY → REPORT.</b></p>`,a:[["Start practice",1]]},
+{t:"Scenario 1 — Password reset",c:`<p>You receive: “IT NOTICE: Your mailbox will be disabled in 30 minutes. Verify your password now.” The sender is <b>support@company-helpdesk.co</b>.</p><p>What do you do?</p>`,a:[["Click because the deadline is urgent",0],["Open the official IT portal separately and report the message",1],["Reply and ask if it is real",0]]},
+{t:"Scenario 2 — Executive request",c:`<p>A message appearing to be from a senior leader asks you to buy gift cards immediately and send the codes. They say they are in a meeting and cannot talk.</p>`,a:[["Buy them quickly",0],["Verify through a known, separate contact method",1],["Send your personal number in reply",0]]},
+{t:"Scenario 3 — Shared document",c:`<p>You get an unexpected file-sharing notification. The button says “View Document,” but the visible domain is unfamiliar.</p>`,a:[["Open the known file-sharing service directly and check there",1],["Click the message button",0],["Forward the message to coworkers",0]]},
+{t:"Transfer to the job",c:`<h2>STOP → CHECK → VERIFY → REPORT</h2><p>You completed the decision practice. The key behavior is not memorizing every phishing trick—it is creating a verification pause before acting.</p><p><a class="btn" href="job-aid.html">Open Job Aid</a> <a class="btn secondary" href="index.html">Return to Case Study</a></p>`,a:[]}
+];
+let i=0,score=0;
+function render(){let s=screens[i];document.getElementById("bar").style.width=(i/(screens.length-1)*100)+"%";let h=`<h2>${s.t}</h2>${s.c}`;s.a.forEach((x,j)=>h+=`<button class="option" onclick="pick(${x[1]})">${x[0]}</button>`);h+=`<div id="fb" class="feedback"></div>`;document.getElementById("screen").innerHTML=h}
+function pick(ok){if(i===0){i++;render();return}let f=document.getElementById("fb");f.className="feedback "+(ok?"good":"bad");f.innerHTML=ok?"Good decision. You verified through a trusted path.":"That choice creates avoidable risk. Use a separate trusted path to verify.";if(ok)score++;setTimeout(()=>{i++;render()},1100)}
+render();
+</script></body></html>
