@@ -1,10 +1,231 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Instructional Design Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Entsaer Shqier | Instructional Design Portfolio</title>
+
   <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f8fc;
+      color: #172033;
+    }
+
+    header {
+      background: #15253f;
+      color: white;
+      padding: 18px 6%;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav strong {
+      font-size: 18px;
+    }
+
+    nav div {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #15253f, #2c4778);
+      color: white;
+      padding: 75px 6%;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      color: #b9caff;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 12px 0;
+    }
+
+    .hero p {
+      max-width: 760px;
+      font-size: 19px;
+      line-height: 1.7;
+      color: #e0e7f5;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 18px;
+      background: white;
+      color: #28467d;
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 55px 6%;
+    }
+
+    .section-title {
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #667085;
+      line-height: 1.6;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.07);
+      border: 1px solid #e5eaf2;
+    }
+
+    .project-number {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: bold;
+      color: #3e5faa;
+      background: #eef3ff;
+      padding: 7px 11px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+
+    .project-card h3 {
+      font-size: 25px;
+      margin: 0 0 10px;
+    }
+
+    .project-card p {
+      color: #5e6879;
+      line-height: 1.65;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 22px;
+    }
+
+    .tag {
+      background: #f1f4f9;
+      color: #4f5e75;
+      border-radius: 20px;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .project-link {
+      display: inline-block;
+      color: white;
+      background: #385db5;
+      padding: 12px 18px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .about {
+      margin-top: 60px;
+      background: white;
+      border-radius: 18px;
+      padding: 34px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.05);
+    }
+
+    .about p {
+      line-height: 1.7;
+      color: #5e6879;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .skill {
+      background: #eef3ff;
+      color: #385db5;
+      padding: 9px 13px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px;
+      color: #667085;
+    }
+
+    @media (max-width: 800px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav div {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -12,7 +233,8 @@
 <header>
   <nav>
     <strong>Instructional Design Portfolio</strong>
-    <div class="links">
+
+    <div>
       <a href="#projects">Projects</a>
       <a href="#process">Process</a>
       <a href="#skills">Skills</a>
@@ -20,110 +242,202 @@
   </nav>
 </header>
 
-<main>
 
 <section class="hero">
-  <div class="eyebrow">Learning Experience Design</div>
-  <h1>Performance-based learning that helps people do the work.</h1>
-  <p class="lead">
-    A portfolio of end-to-end instructional design case studies demonstrating
-    analysis, design, development, assessment, performance support, and evaluation.
-  </p>
-  <a class="btn" href="#projects">View Projects</a>
-</section>
 
-<section id="projects" style="margin-top:60px">
-  <div class="eyebrow">Featured Work</div>
-  <h2>Three complete case studies</h2>
+  <div class="hero-inner">
 
-  <div class="grid">
-
-    <div class="card">
-      <span class="tag">Cybersecurity</span>
-      <span class="tag">Scenario-Based</span>
-      <h3>01 — Cybersecurity Training</h3>
-      <p>
-        Behavior-focused security training where employees inspect realistic
-        messages, make decisions, and receive consequence-based feedback.
-      </p>
-      <a class="btn" href="01-cybersecurity/index.html">View Case Study</a>
-      <a class="btn secondary" href="01-cybersecurity/course.html">Launch Course</a>
+    <div class="eyebrow">
+      INSTRUCTIONAL DESIGN • DIGITAL LEARNING • AI
     </div>
 
-    <div class="card">
-      <span class="tag">Onboarding</span>
-      <span class="tag">30-Day Journey</span>
-      <h3>02 — Employee Onboarding</h3>
-      <p>
-        A structured onboarding experience that reduces first-week confusion
-        and gives new employees a clear path from Day 1 to Day 30.
-      </p>
-      <a class="btn" href="02-onboarding/index.html">View Case Study</a>
-      <a class="btn secondary" href="02-onboarding/course.html">Launch Course</a>
-    </div>
+    <h1>Entsaer Shqier</h1>
 
-    <div class="card">
-      <span class="tag">Customer Service</span>
-      <span class="tag">Branching</span>
-      <h3>03 — Customer Service Training</h3>
-      <p>
-        Scenario-based practice for handling frustrated customers, selecting
-        a resolution, and escalating appropriately.
-      </p>
-      <a class="btn" href="03-customer-service/index.html">View Case Study</a>
-      <a class="btn secondary" href="03-customer-service/course.html">Launch Course</a>
-    </div>
+    <p>
+      I design practical, learner-centered digital learning experiences
+      that combine instructional strategy, realistic workplace scenarios,
+      assessment, feedback, and interactive learning.
+    </p>
+
+    <a class="hero-button" href="#projects">
+      Explore My Work
+    </a>
 
   </div>
+
 </section>
 
-<section id="process" style="margin-top:60px">
-  <div class="eyebrow">Process</div>
-  <h2>How I design</h2>
 
-  <div class="grid">
-    <div class="card">
-      <h3>01 Analyze</h3>
-      <p>Clarify the performance problem, audience, environment, constraints, and success measures.</p>
+<main>
+
+  <section id="projects">
+
+    <div class="section-title">
+      <h2>Featured Projects</h2>
+
+      <p>
+        Four complete instructional design case studies demonstrating
+        scenario-based learning, onboarding, customer service training,
+        cybersecurity awareness, and responsible workplace AI use.
+      </p>
     </div>
 
-    <div class="card">
-      <h3>02 Design</h3>
-      <p>Write measurable objectives, map practice to job behaviors, and select the smallest effective learning solution.</p>
+
+    <div class="projects">
+
+      <!-- PROJECT 1 -->
+
+      <article class="project-card">
+
+        <span class="project-number">PROJECT 01</span>
+
+        <h3>Phishing Defense</h3>
+
+        <p>
+          Scenario-based cybersecurity awareness training that helps
+          employees identify suspicious messages, assess risk, and make
+          safer decisions before clicking or sharing information.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Cybersecurity</span>
+          <span class="tag">Scenario-Based Learning</span>
+          <span class="tag">Assessment</span>
+        </div>
+
+        <a class="project-link" href="01-cybersecurity/index.html">
+          View Case Study →
+        </a>
+
+      </article>
+
+
+      <!-- PROJECT 2 -->
+
+      <article class="project-card">
+
+        <span class="project-number">PROJECT 02</span>
+
+        <h3>New Hire Launchpad</h3>
+
+        <p>
+          A structured employee onboarding experience designed to guide
+          new hires through their first 30 days with clear expectations,
+          resources, milestones, and performance support.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Onboarding</span>
+          <span class="tag">Performance Support</span>
+          <span class="tag">Employee Learning</span>
+        </div>
+
+        <a class="project-link" href="02-onboarding/index.html">
+          View Case Study →
+        </a>
+
+      </article>
+
+
+      <!-- PROJECT 3 -->
+
+      <article class="project-card">
+
+        <span class="project-number">PROJECT 03</span>
+
+        <h3>Service Recovery Lab</h3>
+
+        <p>
+          Interactive customer service training focused on handling
+          difficult customer situations, selecting appropriate responses,
+          and improving service recovery decisions.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Customer Service</span>
+          <span class="tag">Branching Scenarios</span>
+          <span class="tag">Feedback</span>
+        </div>
+
+        <a class="project-link" href="03-customer-service/index.html">
+          View Case Study →
+        </a>
+
+      </article>
+
+
+      <!-- PROJECT 4 -->
+
+      <article class="project-card">
+
+        <span class="project-number">PROJECT 04</span>
+
+        <h3>AI at Work: Make the Right Call</h3>
+
+        <p>
+          An interactive workplace simulation where learners make
+          decisions about generative AI, client data privacy, effective
+          prompting, output verification, and human accountability.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Generative AI</span>
+          <span class="tag">Interactive Simulation</span>
+          <span class="tag">Decision-Based Learning</span>
+          <span class="tag">Scoring & Feedback</span>
+        </div>
+
+        <a class="project-link" href="04-ai-workplace-simulation/index.html">
+          View Case Study →
+        </a>
+
+      </article>
+
     </div>
 
-    <div class="card">
-      <h3>03 Develop</h3>
-      <p>Create storyboards, scenarios, assessments, performance support, and interactive prototypes.</p>
+  </section>
+
+
+  <section class="about" id="process">
+
+    <h2>My Design Approach</h2>
+
+    <p>
+      I begin by identifying the performance problem, target audience,
+      business need, and desired learner behavior. I then develop measurable
+      learning objectives and select the instructional strategy that best
+      supports performance on the job. My projects use realistic practice,
+      decisions, feedback, and performance support rather than relying only
+      on information presentation.
+    </p>
+
+  </section>
+
+
+  <section class="about" id="skills">
+
+    <h2>Skills & Tools</h2>
+
+    <div class="skills">
+      <span class="skill">Instructional Design</span>
+      <span class="skill">ADDIE</span>
+      <span class="skill">Learning Objectives</span>
+      <span class="skill">Scenario-Based Learning</span>
+      <span class="skill">Storyboarding</span>
+      <span class="skill">Assessment Design</span>
+      <span class="skill">eLearning Development</span>
+      <span class="skill">AI-Enhanced Learning</span>
+      <span class="skill">Performance Support</span>
+      <span class="skill">HTML / CSS</span>
     </div>
 
-    <div class="card">
-      <h3>04 Evaluate</h3>
-      <p>Measure learning and transfer using completion, assessment, confidence, and workplace performance indicators.</p>
-    </div>
-  </div>
-</section>
-
-<section id="skills" style="margin-top:60px">
-  <div class="eyebrow">Capabilities</div>
-  <h2>Methods demonstrated</h2>
-
-  <p>
-    <span class="tag">ADDIE</span>
-    <span class="tag">Bloom's Taxonomy</span>
-    <span class="tag">Adult Learning</span>
-    <span class="tag">Scenario-Based Learning</span>
-    <span class="tag">Microlearning</span>
-    <span class="tag">Storyboarding</span>
-    <span class="tag">Assessment Design</span>
-    <span class="tag">Performance Support</span>
-  </p>
-</section>
+  </section>
 
 </main>
 
+
 <footer>
-  Portfolio demonstration projects • Built to showcase end-to-end instructional design practice
+  © 2026 Entsaer Shqier • Instructional Design Portfolio
 </footer>
 
 </body>
