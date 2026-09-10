@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI at Work: Make the Right Call | Interactive Experience</title>
+
+  <link rel="stylesheet" href="../assets/style.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: #172033;
+      color: white;
+      padding: 18px 6%;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 35px auto;
+      padding: 20px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #172033, #28385d);
+      color: white;
+      border-radius: 20px;
+      padding: 38px;
+      margin-bottom: 25px;
+    }
+
+    .eyebrow {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      color: #b8c8ff;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin: 10px 0;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .progress-wrap {
+      margin-top: 25px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(255,255,255,.2);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: white;
+      transition: width .4s ease;
+    }
+
+    .status {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.07);
+    }
+
+    .video-box {
+      background: #0d1321;
+      padding: 12px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      background: black;
+    }
+
+    .video-note {
+      color: #d8def0;
+      font-size: 14px;
+      padding: 12px 4px 2px;
+    }
+
+    .scenario-number {
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #3856a6;
+      margin-bottom: 8px;
+    }
+
+    .manager-message {
+      background: #eef3ff;
+      border-left: 5px solid #3856a6;
+      padding: 18px;
+      border-radius: 10px;
+      margin: 20px 0;
+      line-height: 1.5;
+    }
+
+    .choices {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    button {
+      width: 100%;
+      text-align: left;
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: #172033;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      border-color: #3856a6;
+      box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    }
+
+    button.primary {
+      text-align: center;
+      background: #3856a6;
+      color: white;
+      border: none;
+      font-weight: bold;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 12px;
+      line-height: 1.55;
+    }
+
+    .feedback.correct {
+      display: block;
+      background: #e9f8ef;
+      border-left: 5px solid #25844d;
+    }
+
+    .feedback.incorrect {
+      display: block;
+      background: #fff0f0;
+      border-left: 5px solid #c84444;
+    }
+
+    .next-btn {
+      display: none;
+      margin-top: 18px;
+    }
+
+    .score-box {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .score-number {
+      font-size: 62px;
+      font-weight: bold;
+      color: #3856a6;
+      margin: 15px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #eef3ff;
+      color: #3856a6;
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .prompt-box {
+      background: #101827;
+      color: #f1f5f9;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+      font-family: Consolas, monospace;
+      line-height: 1.5;
+    }
+
+    .course-footer {
+      text-align: center;
+      margin: 35px 0;
+    }
+
+    .course-footer a {
+      color: #3856a6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      .hero {
+        padding: 25px;
+      }
+
+      main {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <strong>AI at Work: Make the Right Call</strong>
+    <a href="index.html">Case Study</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="eyebrow">INTERACTIVE VIDEO SIMULATION</div>
+
+    <h1>Your AI Workday Starts Now</h1>
+
+    <p>
+      You have one workday, several deadlines, and access to generative AI.
+      Your decisions will determine whether AI becomes a productivity tool
+      or a workplace risk.
+    </p>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div class="status">
+        Progress: <span id="progressText">0%</span>
+        &nbsp; | &nbsp;
+        Score: <span id="scoreText">0</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- VIDEO INTRO -->
+
+  <section class="card" id="introScreen">
+
+    <h2>9:05 AM — A New Assignment</h2>
+
+    <p>
+      Your manager needs a client report completed before a 3:00 PM meeting
+      and encourages you to use AI to work faster.
+    </p>
+
+    <div class="video-box">
+
+      <video id="introVideo" controls preload="metadata">
+        <source src="ai-workplace-intro.mp4" type="video/mp4">
+
+        Your browser does not support HTML5 video.
+      </video>
+
+      <div class="video-note">
+        Watch the manager briefing, then begin the simulation.
+      </div>
+
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="primary" onclick="startSimulation()">
+        Begin the Workday
+      </button>
+    </div>
+
+  </section>
+
+
+  <!-- SCENARIO 1 -->
+
+  <section class="card hidden" id="scenario1">
+
+    <div class="scenario-number">DECISION 1 OF 4</div>
+
+    <h2>The Confidential Client Report</h2>
+
+    <div class="manager-message">
+      “Please summarize this client report with AI before the meeting.
+      I need the key recommendations by 3:00 PM.”
+    </div>
+
+    <p>
+      The document contains client names, email addresses, financial
+      information, and confidential business details.
+    </p>
+
+    <h3>What should you do?</h3>
+
+    <div class="choices">
+
+      <button onclick="answer(1, false, this)">
+        A. Upload the entire report into a public AI tool because your manager approved AI use.
+      </button>
+
+      <button onclick="answer(1, true, this)">
+        B. Remove sensitive and identifying information before using an approved AI tool.
+      </button>
+
+      <button onclick="answer(1, false, this)">
+        C. Copy only the client names and financial information into AI so the summary is more accurate.
+      </button>
+
+    </div>
+
+    <div class="feedback" id="feedback1"></div>
+
+    <button class="primary next-btn" id="next1" onclick="nextScenario(2)">
+      Continue →
+    </button>
+
+  </section>
+
+
+  <!-- SCENARIO 2 -->
+
+  <section class="card hidden" id="scenario2">
+
+    <div class="scenario-number">DECISION 2 OF 4</div>
+
+    <h2>The Prompt Challenge</h2>
+
+    <p>
+      You have prepared a privacy-safe version of the report. Now you need AI
+      to create a concise executive summary.
+    </p>
+
+    <h3>Which prompt is most effective?</h3>
+
+    <div class="choices">
+
+      <button onclick="answer(2, false, this)">
+        A. “Summarize this.”
+      </button>
+
+      <button onclick="answer(2, false, this)">
+        B. “Make this report better and tell me everything important.”
+      </button>
+
+      <button onclick="answer(2, true, this)">
+        C. “Summarize the following report for a senior manager in five bullet
+        points. Focus on risks, recommended actions, and deadlines. Do not add
+        information that is not supported by the report.”
+      </button>
+
+    </div>
+
+    <div class="feedback" id="feedback2"></div>
+
+    <button class="primary next-btn" id="next2" onclick="nextScenario(3)">
+      Continue →
+    </button>
+
+  </section>
+
+
+  <!-- SCENARIO 3 -->
+
+  <section class="card hidden" id="scenario3">
+
+    <div class="scenario-number">DECISION 3 OF 4</div>
+
+    <h2>AI Gives You a Confident Answer</h2>
+
+    <p>The AI produces this recommendation:</p>
+
+    <div class="prompt-box">
+      “The client experienced a 27% decline in quarterly revenue and should
+      immediately reduce staffing by 15%.”
+    </div>
+
+    <p>
+      You check the source report and cannot find either of those numbers.
+    </p>
+
+    <h3>What should you do next?</h3>
+
+    <div class="choices">
+
+      <button onclick="answer(3, false, this)">
+        A. Keep the information because AI probably found it from another reliable source.
+      </button>
+
+      <button onclick="answer(3, true, this)">
+        B. Remove the unsupported claims and verify the summary against the original source.
+      </button>
+
+      <button onclick="answer(3, false, this)">
+        C. Send the summary and add “generated by AI” at the bottom.
+      </button>
+
+    </div>
+
+    <div class="feedback" id="feedback3"></div>
+
+    <button class="primary next-btn" id="next3" onclick="nextScenario(4)">
+      Continue →
+    </button>
+
+  </section>
+
+
+  <!-- FINAL CHALLENGE -->
+
+  <section class="card hidden" id="scenario4">
+
+    <div class="scenario-number">FINAL CHALLENGE</div>
+
+    <h2>2:45 PM — The Client Email</h2>
+
+    <p>
+      Your report is ready. AI also drafted an email to the client.
+      It sounds polished, but it promises a service your organization
+      has not approved.
+    </p>
+
+    <h3>You have 15 minutes before the deadline. What do you do?</h3>
+
+    <div class="choices">
+
+      <button onclick="answer(4, false, this)">
+        A. Send it because the wording sounds professional and saves time.
+      </button>
+
+      <button onclick="answer(4, true, this)">
+        B. Review and revise the AI draft, remove the unsupported promise,
+        and take responsibility for the final message.
+      </button>
+
+      <button onclick="answer(4, false, this)">
+        C. Ask AI to make the promise sound less obvious and then send it.
+      </button>
+
+    </div>
+
+    <div class="feedback" id="feedback4"></div>
+
+    <button class="primary next-btn" id="next4" onclick="showResults()">
+      View My Results →
+    </button>
+
+  </section>
+
+
+  <!-- RESULTS -->
+
+  <section class="card hidden score-box" id="results">
+
+    <div class="badge">SIMULATION COMPLETE</div>
+
+    <h2>Your AI Readiness Score</h2>
+
+    <div class="score-number">
+      <span id="finalScore">0</span>%
+    </div>
+
+    <h3 id="resultTitle"></h3>
+
+    <p id="resultMessage"></p>
+
+    <div style="margin-top:25px;">
+      <button class="primary" onclick="restartCourse()">
+        Try the Simulation Again
+      </button>
+    </div>
+
+  </section>
+
+
+  <div class="course-footer">
+    <a href="index.html">← Return to Case Study</a>
+  </div>
+
+</main>
+
+
+<script>
+
+  let score = 0;
+  let answered = {
+    1: false,
+    2: false,
+    3: false,
+    4: false
+  };
+
+  function startSimulation() {
+
+    document.getElementById("introScreen").classList.add("hidden");
+
+    document.getElementById("scenario1").classList.remove("hidden");
+
+    updateProgress(10);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+
+  function answer(number, correct, button) {
+
+    if (answered[number]) {
+      return;
+    }
+
+    answered[number] = true;
+
+    const feedback = document.getElementById("feedback" + number);
+
+    const buttons =
+      document.querySelectorAll("#scenario" + number + " .choices button");
+
+    buttons.forEach(btn => {
+      btn.disabled = true;
+      btn.style.cursor = "default";
+    });
+
+    if (correct) {
+
+      score += 25;
+
+      feedback.className = "feedback correct";
+
+      if (number === 1) {
+        feedback.innerHTML =
+          "<strong>Good decision.</strong> AI can improve productivity, but confidential or personally identifiable information should only be handled according to your organization's approved tools and data policies.";
+      }
+
+      if (number === 2) {
+        feedback.innerHTML =
+          "<strong>Strong prompt.</strong> You provided the audience, format, task, priorities, and an important constraint against inventing unsupported information.";
+      }
+
+      if (number === 3) {
+        feedback.innerHTML =
+          "<strong>Correct.</strong> AI can generate inaccurate or fabricated information. Important output should be verified against reliable source material before it is used.";
+      }
+
+      if (number === 4) {
+        feedback.innerHTML =
+          "<strong>Excellent judgment.</strong> AI can draft content, but the employee remains responsible for reviewing accuracy, commitments, tone, and organizational requirements before sending it.";
+      }
+
+    } else {
+
+      feedback.className = "feedback incorrect";
+
+      if (number === 1) {
+        feedback.innerHTML =
+          "<strong>Risk detected.</strong> Manager approval to use AI does not automatically authorize sharing confidential or personally identifiable information with a public AI system.";
+      }
+
+      if (number === 2) {
+        feedback.innerHTML =
+          "<strong>Try a more specific approach.</strong> Effective prompts clearly define the task, audience, desired format, relevant context, and constraints.";
+      }
+
+      if (number === 3) {
+        feedback.innerHTML =
+          "<strong>Verification is required.</strong> Confident language does not mean an AI response is accurate. Unsupported claims should not be passed to a decision-maker.";
+      }
+
+      if (number === 4) {
+        feedback.innerHTML =
+          "<strong>Human review still matters.</strong> Employees remain responsible for the final work product even when AI helped create the first draft.";
+      }
+    }
+
+    document.getElementById("scoreText").textContent = score;
+
+    document.getElementById("next" + number).style.display = "block";
+
+  }
+
+
+  function nextScenario(number) {
+
+    const previous = number - 1;
+
+    document
+      .getElementById("scenario" + previous)
+      .classList.add("hidden");
+
+    document
+      .getElementById("scenario" + number)
+      .classList.remove("hidden");
+
+    const progressValues = {
+      2: 35,
+      3: 60,
+      4: 80
+    };
+
+    updateProgress(progressValues[number]);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  function updateProgress(value) {
+
+    document.getElementById("progressBar").style.width = value + "%";
+
+    document.getElementById("progressText").textContent = value + "%";
+
+  }
+
+
+  function showResults() {
+
+    document.getElementById("scenario4").classList.add("hidden");
+
+    document.getElementById("results").classList.remove("hidden");
+
+    document.getElementById("finalScore").textContent = score;
+
+    document.getElementById("scoreText").textContent = score;
+
+    updateProgress(100);
+
+    const title = document.getElementById("resultTitle");
+    const message = document.getElementById("resultMessage");
+
+    if (score === 100) {
+
+      title.textContent = "AI Ready";
+
+      message.textContent =
+        "You demonstrated strong judgment across privacy, prompting, verification, and responsible use of AI-generated content.";
+
+    } else if (score >= 75) {
+
+      title.textContent = "Strong AI Judgment";
+
+      message.textContent =
+        "You made mostly safe and effective decisions. Review the feedback from any missed scenario before applying AI to sensitive workplace tasks.";
+
+    } else if (score >= 50) {
+
+      title.textContent = "Developing AI Judgment";
+
+      message.textContent =
+        "You understand some important AI practices, but additional attention to privacy, verification, and human review would reduce workplace risk.";
+
+    } else {
+
+      title.textContent = "Review Recommended";
+
+      message.textContent =
+        "Before using AI for important workplace tasks, review the key principles of data protection, source verification, effective prompting, and human accountability.";
+
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  function restartCourse() {
+
+    score = 0;
+
+    answered = {
+      1: false,
+      2: false,
+      3: false,
+      4: false
+    };
+
+    document.getElementById("scoreText").textContent = "0";
+
+    document.getElementById("results").classList.add("hidden");
+
+    for (let i = 1; i <= 4; i++) {
+
+      const scenario =
+        document.getElementById("scenario" + i);
+
+      scenario.classList.add("hidden");
+
+      const feedback =
+        document.getElementById("feedback" + i);
+
+      feedback.className = "feedback";
+
+      feedback.innerHTML = "";
+
+      const next =
+        document.getElementById("next" + i);
+
+      next.style.display = "none";
+
+      const buttons =
+        document.querySelectorAll("#scenario" + i + " .choices button");
+
+      buttons.forEach(btn => {
+        btn.disabled = false;
+        btn.style.cursor = "pointer";
+      });
+
+    }
+
+    document.getElementById("introScreen").classList.remove("hidden");
+
+    updateProgress(0);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+</script>
+
+</body>
+</html>
