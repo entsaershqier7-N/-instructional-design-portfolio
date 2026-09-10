@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>AI at Work: Make the Right Call | Interactive Experience</title>
+  <title>AI at Work: Make the Right Call | Interactive Simulation</title>
 
   <link rel="stylesheet" href="../assets/style.css">
 
@@ -36,6 +36,7 @@
     nav a {
       color: white;
       text-decoration: none;
+      font-weight: 600;
     }
 
     main {
@@ -50,6 +51,7 @@
       border-radius: 20px;
       padding: 38px;
       margin-bottom: 25px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.12);
     }
 
     .eyebrow {
@@ -100,24 +102,105 @@
       box-shadow: 0 8px 24px rgba(0,0,0,.07);
     }
 
-    .video-box {
-      background: #0d1321;
-      padding: 12px;
-      border-radius: 18px;
+    .simulation-window {
       overflow: hidden;
+      border-radius: 18px;
+      background: #111827;
+      color: white;
+      min-height: 420px;
+      position: relative;
     }
 
-    video {
-      width: 100%;
-      border-radius: 12px;
-      display: block;
-      background: black;
-    }
-
-    .video-note {
-      color: #d8def0;
+    .meeting-bar {
+      background: #20293a;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 14px;
-      padding: 12px 4px 2px;
+    }
+
+    .live-badge {
+      background: #dc2626;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .manager-scene {
+      min-height: 310px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 35px;
+      background:
+        radial-gradient(circle at top right, rgba(88,116,190,.45), transparent 35%),
+        linear-gradient(135deg, #192235, #0f172a);
+    }
+
+    .manager-profile {
+      text-align: center;
+      max-width: 230px;
+      margin-right: 35px;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dbeafe, #93c5fd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      border: 4px solid rgba(255,255,255,.25);
+    }
+
+    .manager-name {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .manager-role {
+      font-size: 13px;
+      color: #cbd5e1;
+      margin-top: 4px;
+    }
+
+    .dialogue-area {
+      flex: 1;
+      max-width: 560px;
+    }
+
+    .speech-box {
+      background: white;
+      color: #172033;
+      border-radius: 16px;
+      padding: 25px;
+      line-height: 1.7;
+      font-size: 18px;
+      min-height: 170px;
+      position: relative;
+    }
+
+    .speech-box::before {
+      content: "";
+      position: absolute;
+      left: -16px;
+      top: 55px;
+      border-width: 10px 16px 10px 0;
+      border-style: solid;
+      border-color: transparent white transparent transparent;
+    }
+
+    .scene-controls {
+      padding: 18px 20px;
+      background: #20293a;
+      display: flex;
+      justify-content: flex-end;
     }
 
     .scenario-number {
@@ -156,7 +239,7 @@
       transition: .2s;
     }
 
-    button:hover {
+    button:hover:not(:disabled) {
       transform: translateY(-2px);
       border-color: #3856a6;
       box-shadow: 0 5px 15px rgba(0,0,0,.08);
@@ -168,6 +251,10 @@
       color: white;
       border: none;
       font-weight: bold;
+    }
+
+    button.primary:hover {
+      background: #2d478f;
     }
 
     .feedback {
@@ -197,7 +284,7 @@
 
     .score-box {
       text-align: center;
-      padding: 30px;
+      padding: 35px;
     }
 
     .score-number {
@@ -230,6 +317,22 @@
       line-height: 1.5;
     }
 
+    .skill-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .skill-tag {
+      background: #eef3ff;
+      color: #3856a6;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
     .course-footer {
       text-align: center;
       margin: 35px 0;
@@ -253,6 +356,18 @@
       main {
         padding: 12px;
       }
+
+      .manager-scene {
+        flex-direction: column;
+      }
+
+      .manager-profile {
+        margin: 0 0 25px;
+      }
+
+      .speech-box::before {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -269,7 +384,7 @@
 <main>
 
   <section class="hero">
-    <div class="eyebrow">INTERACTIVE VIDEO SIMULATION</div>
+    <div class="eyebrow">INTERACTIVE WORKPLACE SIMULATION</div>
 
     <h1>Your AI Workday Starts Now</h1>
 
@@ -278,6 +393,13 @@
       Your decisions will determine whether AI becomes a productivity tool
       or a workplace risk.
     </p>
+
+    <div class="skill-row">
+      <span class="skill-tag">AI Safety</span>
+      <span class="skill-tag">Data Privacy</span>
+      <span class="skill-tag">Prompting</span>
+      <span class="skill-tag">Verification</span>
+    </div>
 
     <div class="progress-wrap">
       <div class="progress-track">
@@ -293,35 +415,49 @@
   </section>
 
 
-  <!-- VIDEO INTRO -->
+  <!-- INTERACTIVE OPENING SCENE -->
 
   <section class="card" id="introScreen">
 
-    <h2>9:05 AM — A New Assignment</h2>
+    <h2>9:05 AM — Morning Briefing</h2>
 
     <p>
-      Your manager needs a client report completed before a 3:00 PM meeting
-      and encourages you to use AI to work faster.
+      Your manager starts a short virtual meeting before an important client deadline.
     </p>
 
-    <div class="video-box">
+    <div class="simulation-window">
 
-      <video id="introVideo" controls preload="metadata">
-        <source src="ai-workplace-intro.mp4" type="video/mp4">
-
-        Your browser does not support HTML5 video.
-      </video>
-
-      <div class="video-note">
-        Watch the manager briefing, then begin the simulation.
+      <div class="meeting-bar">
+        <span>Team Meeting • 9:05 AM</span>
+        <span class="live-badge">LIVE</span>
       </div>
 
-    </div>
+      <div class="manager-scene">
 
-    <div style="margin-top:20px;">
-      <button class="primary" onclick="startSimulation()">
-        Begin the Workday
-      </button>
+        <div class="manager-profile">
+          <div class="avatar">👩‍💼</div>
+          <div class="manager-name">Sarah Mitchell</div>
+          <div class="manager-role">Project Manager</div>
+        </div>
+
+        <div class="dialogue-area">
+          <div class="speech-box" id="speechBox">
+            Good morning. I have an important assignment for you today.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="scene-controls">
+        <button
+          class="primary"
+          id="sceneButton"
+          style="max-width:220px;"
+          onclick="advanceBriefing()">
+          Continue Briefing →
+        </button>
+      </div>
+
     </div>
 
   </section>
@@ -341,23 +477,23 @@
     </div>
 
     <p>
-      The document contains client names, email addresses, financial
-      information, and confidential business details.
+      The document contains client names, email addresses,
+      financial information, and confidential business details.
     </p>
 
     <h3>What should you do?</h3>
 
     <div class="choices">
 
-      <button onclick="answer(1, false, this)">
+      <button onclick="answer(1, false)">
         A. Upload the entire report into a public AI tool because your manager approved AI use.
       </button>
 
-      <button onclick="answer(1, true, this)">
+      <button onclick="answer(1, true)">
         B. Remove sensitive and identifying information before using an approved AI tool.
       </button>
 
-      <button onclick="answer(1, false, this)">
+      <button onclick="answer(1, false)">
         C. Copy only the client names and financial information into AI so the summary is more accurate.
       </button>
 
@@ -381,26 +517,26 @@
     <h2>The Prompt Challenge</h2>
 
     <p>
-      You have prepared a privacy-safe version of the report. Now you need AI
-      to create a concise executive summary.
+      You have prepared a privacy-safe version of the report.
+      Now you need AI to create a concise executive summary.
     </p>
 
     <h3>Which prompt is most effective?</h3>
 
     <div class="choices">
 
-      <button onclick="answer(2, false, this)">
+      <button onclick="answer(2, false)">
         A. “Summarize this.”
       </button>
 
-      <button onclick="answer(2, false, this)">
+      <button onclick="answer(2, false)">
         B. “Make this report better and tell me everything important.”
       </button>
 
-      <button onclick="answer(2, true, this)">
-        C. “Summarize the following report for a senior manager in five bullet
-        points. Focus on risks, recommended actions, and deadlines. Do not add
-        information that is not supported by the report.”
+      <button onclick="answer(2, true)">
+        C. “Summarize the following report for a senior manager in five bullet points.
+        Focus on risks, recommended actions, and deadlines. Do not add information
+        that is not supported by the report.”
       </button>
 
     </div>
@@ -425,8 +561,8 @@
     <p>The AI produces this recommendation:</p>
 
     <div class="prompt-box">
-      “The client experienced a 27% decline in quarterly revenue and should
-      immediately reduce staffing by 15%.”
+      “The client experienced a 27% decline in quarterly revenue
+      and should immediately reduce staffing by 15%.”
     </div>
 
     <p>
@@ -437,15 +573,15 @@
 
     <div class="choices">
 
-      <button onclick="answer(3, false, this)">
+      <button onclick="answer(3, false)">
         A. Keep the information because AI probably found it from another reliable source.
       </button>
 
-      <button onclick="answer(3, true, this)">
+      <button onclick="answer(3, true)">
         B. Remove the unsupported claims and verify the summary against the original source.
       </button>
 
-      <button onclick="answer(3, false, this)">
+      <button onclick="answer(3, false)">
         C. Send the summary and add “generated by AI” at the bottom.
       </button>
 
@@ -478,16 +614,16 @@
 
     <div class="choices">
 
-      <button onclick="answer(4, false, this)">
+      <button onclick="answer(4, false)">
         A. Send it because the wording sounds professional and saves time.
       </button>
 
-      <button onclick="answer(4, true, this)">
+      <button onclick="answer(4, true)">
         B. Review and revise the AI draft, remove the unsupported promise,
         and take responsibility for the final message.
       </button>
 
-      <button onclick="answer(4, false, this)">
+      <button onclick="answer(4, false)">
         C. Ask AI to make the promise sound less obvious and then send it.
       </button>
 
@@ -536,7 +672,9 @@
 
 <script>
 
+  let briefingStep = 0;
   let score = 0;
+
   let answered = {
     1: false,
     2: false,
@@ -544,22 +682,50 @@
     4: false
   };
 
-  function startSimulation() {
+  const briefing = [
+    "Good morning. I have an important assignment for you today.",
 
-    document.getElementById("introScreen").classList.add("hidden");
+    "We have a client meeting at 3:00 PM, and I need a concise summary of the client report before then.",
 
-    document.getElementById("scenario1").classList.remove("hidden");
+    "You can use generative AI to help you work faster, but some of the information in this report is sensitive.",
 
-    updateProgress(10);
+    "Remember: you are responsible for protecting client information and checking the accuracy of anything AI generates.",
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+    "Review the situation carefully. Your decisions today will affect both the client and the organization."
+  ];
+
+
+  function advanceBriefing() {
+
+    briefingStep++;
+
+    const speechBox = document.getElementById("speechBox");
+    const sceneButton = document.getElementById("sceneButton");
+
+    if (briefingStep < briefing.length) {
+
+      speechBox.textContent = briefing[briefingStep];
+
+      if (briefingStep === briefing.length - 1) {
+        sceneButton.textContent = "Begin the Workday →";
+      }
+
+    } else {
+
+      document.getElementById("introScreen").classList.add("hidden");
+      document.getElementById("scenario1").classList.remove("hidden");
+
+      updateProgress(10);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
   }
 
 
-  function answer(number, correct, button) {
+  function answer(number, correct) {
 
     if (answered[number]) {
       return;
@@ -576,6 +742,7 @@
       btn.disabled = true;
       btn.style.cursor = "default";
     });
+
 
     if (correct) {
 
@@ -629,9 +796,7 @@
     }
 
     document.getElementById("scoreText").textContent = score;
-
     document.getElementById("next" + number).style.display = "block";
-
   }
 
 
@@ -659,27 +824,22 @@
       top: 0,
       behavior: "smooth"
     });
-
   }
 
 
   function updateProgress(value) {
 
     document.getElementById("progressBar").style.width = value + "%";
-
     document.getElementById("progressText").textContent = value + "%";
-
   }
 
 
   function showResults() {
 
     document.getElementById("scenario4").classList.add("hidden");
-
     document.getElementById("results").classList.remove("hidden");
 
     document.getElementById("finalScore").textContent = score;
-
     document.getElementById("scoreText").textContent = score;
 
     updateProgress(100);
@@ -714,20 +874,19 @@
 
       message.textContent =
         "Before using AI for important workplace tasks, review the key principles of data protection, source verification, effective prompting, and human accountability.";
-
     }
 
     window.scrollTo({
       top: 0,
       behavior: "smooth"
     });
-
   }
 
 
   function restartCourse() {
 
     score = 0;
+    briefingStep = 0;
 
     answered = {
       1: false,
@@ -742,21 +901,14 @@
 
     for (let i = 1; i <= 4; i++) {
 
-      const scenario =
-        document.getElementById("scenario" + i);
-
+      const scenario = document.getElementById("scenario" + i);
       scenario.classList.add("hidden");
 
-      const feedback =
-        document.getElementById("feedback" + i);
-
+      const feedback = document.getElementById("feedback" + i);
       feedback.className = "feedback";
-
       feedback.innerHTML = "";
 
-      const next =
-        document.getElementById("next" + i);
-
+      const next = document.getElementById("next" + i);
       next.style.display = "none";
 
       const buttons =
@@ -766,8 +918,10 @@
         btn.disabled = false;
         btn.style.cursor = "pointer";
       });
-
     }
+
+    document.getElementById("speechBox").textContent = briefing[0];
+    document.getElementById("sceneButton").textContent = "Continue Briefing →";
 
     document.getElementById("introScreen").classList.remove("hidden");
 
@@ -777,7 +931,6 @@
       top: 0,
       behavior: "smooth"
     });
-
   }
 
 </script>
